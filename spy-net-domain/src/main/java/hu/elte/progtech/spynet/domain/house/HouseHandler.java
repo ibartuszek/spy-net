@@ -1,5 +1,6 @@
 package hu.elte.progtech.spynet.domain.house;
 
+import com.google.common.base.Preconditions;
 import hu.elte.progtech.spynet.dal.house.HouseDao;
 import hu.elte.progtech.spynet.dal.house.HouseDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,7 @@ public class HouseHandler implements HouseService {
 
     @Override
     public void saveHouse(House house) {
+        Preconditions.checkArgument(house != null, "house cannot be null!");
         houseDao.saveHouse(houseTransformer.transformToHouseDto(house));
     }
 

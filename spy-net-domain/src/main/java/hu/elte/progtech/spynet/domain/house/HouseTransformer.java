@@ -20,11 +20,14 @@ public class HouseTransformer {
 
 
     public House transformFromHouseDto(HouseDto houseDto) {
-        House house = new House();
-        house.setHouseId(houseDto.getHouseId());
-        house.setName(houseDto.getName());
-        house.setSlogan(houseDto.getSlogan());
-        house.setCrest(houseDto.getCrest());
+        House house = null;
+        if (houseDto != null) {
+            house = new House();
+            house.setHouseId(houseDto.getHouseId());
+            house.setName(houseDto.getName());
+            house.setSlogan(houseDto.getSlogan());
+            house.setCrest(houseDto.getCrest());
+        }
         return house;
     }
 }

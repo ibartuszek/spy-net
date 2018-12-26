@@ -33,7 +33,7 @@ public class HouseDaoTest {
         List<HouseDto> resultList = underTest.listHouses();
         // THEN
         BDDMockito.verify(houseRepository).findAll();
-        Assert.assertEquals(resultList, Collections.emptyList());
+        Assert.assertEquals(Collections.emptyList(), resultList);
     }
 
     @Test
@@ -50,8 +50,8 @@ public class HouseDaoTest {
         List<HouseDto> resultList = underTest.listHouses();
         // THEN
         BDDMockito.verify(houseRepository).findAll();
-        Assert.assertEquals(resultList, houseDtoList);
-        Assert.assertEquals(resultList.get(0), houseDtoList.get(0));
+        Assert.assertEquals(houseDtoList, resultList);
+        Assert.assertEquals(houseDtoList.get(0), resultList.get(0));
     }
 
     @Test(expected=IllegalArgumentException.class)

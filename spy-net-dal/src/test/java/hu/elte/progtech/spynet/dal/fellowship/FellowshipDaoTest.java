@@ -46,7 +46,7 @@ public class FellowshipDaoTest {
         List<FellowshipDto> resultList = underTest.listFellowships();
         // THEN
         BDDMockito.verify(fellowshipRepository).findAll();
-        Assert.assertEquals(resultList, Collections.emptyList());
+        Assert.assertEquals(Collections.emptyList(), resultList);
     }
 
     @Test
@@ -67,8 +67,8 @@ public class FellowshipDaoTest {
         List<FellowshipDto> resultList = underTest.listFellowships();
         // THEN
         BDDMockito.verify(fellowshipRepository).findAll();
-        Assert.assertEquals(resultList, fellowshipDtoList);
-        Assert.assertEquals(resultList.get(0), fellowshipDtoList.get(0));
+        Assert.assertEquals(fellowshipDtoList, resultList);
+        Assert.assertEquals(fellowshipDtoList.get(0), resultList.get(0));
     }
 
     @Test(expected=IllegalArgumentException.class)

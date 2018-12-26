@@ -1,5 +1,6 @@
 package hu.elte.progtech.spynet.domain.character;
 
+import com.google.common.base.Preconditions;
 import hu.elte.progtech.spynet.dal.character.CharacterDto;
 import hu.elte.progtech.spynet.dal.house.HouseDto;
 import hu.elte.progtech.spynet.domain.house.House;

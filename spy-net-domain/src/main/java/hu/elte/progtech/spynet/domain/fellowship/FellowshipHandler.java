@@ -1,5 +1,6 @@
 package hu.elte.progtech.spynet.domain.fellowship;
 
+import com.google.common.base.Preconditions;
 import hu.elte.progtech.spynet.dal.fellowship.FellowshipDao;
 import hu.elte.progtech.spynet.dal.fellowship.FellowshipDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,15 +20,15 @@ public class FellowshipHandler implements FellowshipService {
 
     @Override
     public void saveFellowship(Fellowship fellowship) {
+        Preconditions.checkArgument(fellowship != null, "fellowship cannot be null!");
         fellowshipDao.saveFellowship(fellowshipTransformer.transformToFellowshipDto(fellowship));
     }
 
     @Override
     public void updateFellowship(Fellowship fellowship) {
-        if (fellowship.getEnd() != null) {
-            FellowshipDto fellowshipDto = fellowshipTransformer.transformToFellowshipDto(fellowship);
-            fellowshipDao.updateFellowship(fellowshipDto);
-        }
+        Preconditions.checkArgument(fellowship != null, "fellowship cannot be null!");
+        Preconditions.checkArgument(fellowship.getEnd() != null, "fellowship.end cannot be null!");
+        fellowshipDao.updateFellowship(fellowshipTransformer.transformToFellowshipDto(fellowship));
     }
 
     @Override

@@ -43,7 +43,7 @@ public class CharacterDaoTest {
         List<CharacterDto> resultList = underTest.listCharacters();
         // THEN
         BDDMockito.verify(characterRepository).findAll();
-        Assert.assertEquals(resultList, Collections.emptyList());
+        Assert.assertEquals(Collections.emptyList(), resultList);
     }
 
     @Test
@@ -62,8 +62,8 @@ public class CharacterDaoTest {
         List<CharacterDto> resultList = underTest.listCharacters();
         // THEN
         BDDMockito.verify(characterRepository).findAll();
-        Assert.assertEquals(resultList, characterDtoList);
-        Assert.assertEquals(resultList.get(0), characterDtoList.get(0));
+        Assert.assertEquals(characterDtoList, resultList);
+        Assert.assertEquals(characterDtoList.get(0), resultList.get(0));
     }
 
     @Test(expected=IllegalArgumentException.class)
