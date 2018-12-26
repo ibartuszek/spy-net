@@ -42,7 +42,7 @@ public class CharacterHandler implements CharacterService {
     }
 
     public void saveCharacter(Character character) {
-        characterDao.save(characterTransformer.transformToCharacterDto(character));
+        characterDao.saveCharacter(characterTransformer.transformToCharacterDto(character));
     }
 
     @Override

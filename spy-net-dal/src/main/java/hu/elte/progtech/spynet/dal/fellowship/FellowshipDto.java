@@ -7,8 +7,8 @@ import java.time.LocalDate;
 public class FellowshipDto {
 
     private long fellowshipId;
-    private HouseDto houese1;
-    private HouseDto houese2;
+    private HouseDto house1;
+    private HouseDto house2;
     private LocalDate begin;
     private LocalDate end;
 
@@ -16,8 +16,8 @@ public class FellowshipDto {
 
     public FellowshipDto(FellowshipEntity fellowshipEntity, HouseDto house1, HouseDto house2) {
         this.fellowshipId = fellowshipEntity.getFellowshipId();
-        this.houese1 = house1;
-        this.houese2 = house2;
+        this.house1 = house1;
+        this.house2 = house2;
         if (fellowshipEntity.getBegin() != null) {
             this.begin = fellowshipEntity.getBegin().toLocalDate();
         }
@@ -34,20 +34,20 @@ public class FellowshipDto {
         this.fellowshipId = fellowshipId;
     }
 
-    public HouseDto getHouese1() {
-        return houese1;
+    public HouseDto getHouse1() {
+        return house1;
     }
 
-    public void setHouese1(HouseDto houese1) {
-        this.houese1 = houese1;
+    public void setHouse1(HouseDto house1) {
+        this.house1 = house1;
     }
 
-    public HouseDto getHouese2() {
-        return houese2;
+    public HouseDto getHouse2() {
+        return house2;
     }
 
-    public void setHouese2(HouseDto houese2) {
-        this.houese2 = houese2;
+    public void setHouse2(HouseDto house2) {
+        this.house2 = house2;
     }
 
     public LocalDate getBegin() {
@@ -85,10 +85,18 @@ public class FellowshipDto {
     public String toString() {
         return "FellowshipDto{" +
                 "fellowshipId=" + fellowshipId +
-                ", houese1=" + houese1 +
-                ", houese2=" + houese2 +
+                ", house1=" + house1 +
+                ", house2=" + house2 +
                 ", begin=" + begin +
                 ", end=" + end +
                 '}';
+    }
+
+    public static FellowshipDto createFellowshipDto(HouseDto house1, HouseDto house2, LocalDate start) {
+        FellowshipDto fellowshipDto= new FellowshipDto();
+        fellowshipDto.setHouse1(house1);
+        fellowshipDto.setHouse2(house2);
+        fellowshipDto.setBegin(start);
+        return fellowshipDto;
     }
 }

@@ -106,4 +106,13 @@ public class CharacterEntity {
                 ", version=" + version +
                 '}';
     }
+
+    public static CharacterEntity createCharacterEntity(String name, HouseEntity house) {
+        CharacterEntity characterEntity = new CharacterEntity();
+        characterEntity.setName(name);
+        characterEntity.setHouse(house);
+        characterEntity.setStatus("alive");
+        characterEntity.setVersion(1);
+        return characterEntity;
+    }
 }

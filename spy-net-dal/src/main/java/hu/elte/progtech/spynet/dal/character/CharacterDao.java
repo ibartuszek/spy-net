@@ -1,5 +1,6 @@
 package hu.elte.progtech.spynet.dal.character;
 
+import com.google.common.base.Preconditions;
 import hu.elte.progtech.spynet.dal.house.HouseDto;
 import hu.elte.progtech.spynet.dal.house.HouseEntity;
 import hu.elte.progtech.spynet.dal.house.HouseRepository;
@@ -39,18 +40,23 @@ public class CharacterDao {
     }
 
     @Transactional
-    public void save(CharacterDto character) {
-        characterRepository.save(new CharacterEntity(character, getHouseEntity(character)));
+    public void saveCharacter(CharacterDto characterDto) {
+        Preconditions.checkArgument(characterDto != null, "characterDto cannot be null!");
+        characterRepository.save(new CharacterEntity(characterDto, getHouseEntity(characterDto)));
     }
 
     @Transactional
-    public void updateCharacter(CharacterDto character) {
+    public void updateCharacter(CharacterDto characterDto) {
+        Preconditions.checkArgument(characterDto != null, "characterDto cannot be null!");
         CharacterEntity characterEntity;
-        HouseEntity houseEntity = getHouseEntity(character);
-        Optional<CharacterEntity> optionalCharacterEntity = characterRepository.findById(character.getCharacterId());
+        HouseEntity houseEntity = getHouseEntity(characterDto);
+        Optional<CharacterEntity> optionalCharacterEntity = characterRepository.findById(characterDto.getCharacterId());
         if (optionalCharacterEntity.isPresent()) {
             characterEntity = optionalCharacterEntity.get();
-            modifyCharacterEntity(character, characterEntity, houseEntity);
+            modifyCharacterEntity(characterDto, characterEntity, houseEntity);
+        } else {
+            throw new IllegalArgumentException("CharacterEntity cannot be found in db with the following id: "
+                    + characterDto.getCharacterId());
         }
     }
 

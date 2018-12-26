@@ -110,4 +110,12 @@ public class FellowshipEntity {
                 ", version=" + version +
                 '}';
     }
+
+    public static FellowshipEntity createFellowshipEntity(HouseEntity houseEntity1, HouseEntity houseEntity2, LocalDate start) {
+        FellowshipEntity fellowshipEntity = new FellowshipEntity();
+        fellowshipEntity.setHouse1(houseEntity1);
+        fellowshipEntity.setHouse2(houseEntity2);
+        fellowshipEntity.setBegin(Date.valueOf(start));
+        return fellowshipEntity;
+    }
 }

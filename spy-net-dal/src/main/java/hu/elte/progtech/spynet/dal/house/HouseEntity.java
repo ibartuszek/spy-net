@@ -92,4 +92,13 @@ public class HouseEntity {
                 ", version=" + version +
                 '}';
     }
+
+    public static HouseEntity createHouseEntity(String name, String slogan) {
+        HouseEntity houseEntity = new HouseEntity();
+        houseEntity.setName(name);
+        houseEntity.setSlogan(slogan);
+        houseEntity.setVersion(1);
+        houseEntity.setCrest(new Byte[16]);
+        return houseEntity;
+    }
 }

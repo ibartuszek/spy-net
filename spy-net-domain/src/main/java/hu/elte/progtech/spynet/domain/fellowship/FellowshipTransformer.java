@@ -23,8 +23,8 @@ public class FellowshipTransformer {
         if (house1 != null && house2 != null && begin != null) {
             fellowshipDto = new FellowshipDto();
             fellowshipDto.setFellowshipId(fellowship.getFellowshipId());
-            fellowshipDto.setHouese1(houseTransformer.transformToHouseDto(house1));
-            fellowshipDto.setHouese2(houseTransformer.transformToHouseDto(house2));
+            fellowshipDto.setHouse1(houseTransformer.transformToHouseDto(house1));
+            fellowshipDto.setHouse2(houseTransformer.transformToHouseDto(house2));
             fellowshipDto.setBegin(begin);
             fellowshipDto.setEnd(fellowship.getEnd());
         }
@@ -33,8 +33,8 @@ public class FellowshipTransformer {
 
     public Fellowship transformFromFellowshipDto(FellowshipDto fellowshipDto) {
         Fellowship fellowship = null;
-        HouseDto houseDto1 = fellowshipDto.getHouese1();
-        HouseDto houseDto2 = fellowshipDto.getHouese2();
+        HouseDto houseDto1 = fellowshipDto.getHouse1();
+        HouseDto houseDto2 = fellowshipDto.getHouse2();
         LocalDate begin = fellowshipDto.getBegin();
         if (houseDto1 != null && houseDto2 != null && begin != null) {
             fellowship = new Fellowship();
