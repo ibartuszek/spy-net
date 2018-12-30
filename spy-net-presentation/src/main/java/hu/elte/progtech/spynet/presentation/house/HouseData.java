@@ -65,12 +65,15 @@ public class HouseData {
 
         HouseData houseData = (HouseData) o;
 
-        return houseId == houseData.houseId;
+        if (!name.equals(houseData.name)) return false;
+        return slogan.equals(houseData.slogan);
     }
 
     @Override
     public int hashCode() {
-        return (int) (houseId ^ (houseId >>> 32));
+        int result = name.hashCode();
+        result = 31 * result + slogan.hashCode();
+        return result;
     }
 
     @Override

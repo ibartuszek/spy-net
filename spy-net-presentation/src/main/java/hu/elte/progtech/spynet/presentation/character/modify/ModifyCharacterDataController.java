@@ -37,7 +37,7 @@ public class ModifyCharacterDataController {
     }
 
     @ModelAttribute
-    private CharacterRequest characterRequest(ModifyCharacterRequest modifyCharacterRequest) {
+    public CharacterRequest characterRequest(ModifyCharacterRequest modifyCharacterRequest) {
         return modifyCharacterDataService.createCharacterRequest(modifyCharacterRequest);
     }
 

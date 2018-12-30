@@ -37,9 +37,6 @@ public class CreateHouseDataService {
         int index = 0;
         while (index < houseDataList.size() && !found) {
             found = houseRequest.getName().equals(houseDataList.get(index).getName());
-            if (!found) {
-                found = houseRequest.getSlogan().equals(houseDataList.get(index).getSlogan());
-            }
             index++;
         }
         return !found;
