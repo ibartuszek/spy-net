@@ -64,12 +64,19 @@ public class CharacterData {
 
         CharacterData that = (CharacterData) o;
 
-        return characterId == that.characterId;
+        if (armySize != that.armySize) return false;
+        if (!name.equals(that.name)) return false;
+        if (!status.equals(that.status)) return false;
+        return house.equals(that.house);
     }
 
     @Override
     public int hashCode() {
-        return (int) (characterId ^ (characterId >>> 32));
+        int result = name.hashCode();
+        result = 31 * result + armySize;
+        result = 31 * result + status.hashCode();
+        result = 31 * result + house.hashCode();
+        return result;
     }
 
     @Override

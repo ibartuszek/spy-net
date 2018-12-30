@@ -5,6 +5,7 @@ import hu.elte.progtech.spynet.domain.character.CharacterStatus;
 import hu.elte.progtech.spynet.domain.house.House;
 import hu.elte.progtech.spynet.presentation.character.create.CharacterRequest;
 import hu.elte.progtech.spynet.presentation.character.modify.ModifyCharacterDataController;
+import hu.elte.progtech.spynet.presentation.house.HouseData;
 import hu.elte.progtech.spynet.presentation.house.HouseDataService;
 import hu.elte.progtech.spynet.presentation.house.HouseDataTransformer;
 import org.junit.Assert;
@@ -51,6 +52,7 @@ public class CharacterDataTransformerTest {
         characterData.setName(character.getName());
         characterData.setArmySize(character.getArmySize());
         characterData.setStatus(character.getStatus().getStatus());
+        characterData.setHouse("");
         characterData.setCharacterId(character.getCharacterId());
         characterData.setCharacterUrl(String.format("%s?characterId=%d",
                 ModifyCharacterDataController.REQUEST_MAPPING, characterData.getCharacterId()));
@@ -59,7 +61,7 @@ public class CharacterDataTransformerTest {
         // THEN
         Assert.assertEquals(characterData, result);
     }
-/*
+
     @Test
     public void testTransformToCharacterDataWhenInputIsNotNullButHouseIsNotNull() {
         // GIVEN
@@ -127,14 +129,22 @@ public class CharacterDataTransformerTest {
         // GIVEN
         String houseName = "house";
         House house = House.createHouse(houseName, "slogan");
+        HouseData houseData = new HouseData();
+        houseData.setName(house.getName());
+        houseData.setSlogan(house.getSlogan());
+        houseData.setCrestUrl("");
+        houseData.setHasCrest(false);
         CharacterRequest characterRequest = createCharacterRequestWithoutHouse();
         characterRequest.setHouse(houseName);
         Character character = Character.createCharacter(characterRequest.getName(), characterRequest.getArmySize(), null);
         character.setHouse(house);
-        BDDMockito.given(houseDataService.getHouseDataByName())
+        BDDMockito.given(houseDataService.getHouseDataByName(houseName)).willReturn(houseData);
+        BDDMockito.given(houseDataTransformer.transformFromHouseData(houseData)).willReturn(house);
         // WHEN
         Character result = underTest.transformFromCharacterRequest(characterRequest);
         // THEN
+        BDDMockito.verify(houseDataService).getHouseDataByName(houseName);
+        BDDMockito.verify(houseDataTransformer).transformFromHouseData(houseData);
         Assert.assertEquals(character, result);
     }
 
@@ -154,9 +164,62 @@ public class CharacterDataTransformerTest {
 
     @Test
     public void testTransformToCharacterRequestWhenInputIsNull() {
-        //
+        // GIVEN
+        Character character = null;
+        CharacterRequest characterRequest = null;
+        // WHEN
+        CharacterRequest result = underTest.transformToCharacterRequest(character);
+        // THEN
+        Assert.assertEquals(characterRequest, result);
     }
-*/
+
+    @Test
+    public void testTransformToCharacterRequestWhenHouseIsNull() {
+        // GIVEN
+        Character character = Character.createCharacter("name", 10, null);
+        CharacterRequest characterRequest = new CharacterRequest();
+        characterRequest.setName(character.getName());
+        characterRequest.setStatus("alive");
+        characterRequest.setArmySize(character.getArmySize());
+        characterRequest.setHouse("");
+        // WHEN
+        CharacterRequest result = underTest.transformToCharacterRequest(character);
+        // THEN
+        Assert.assertEquals(characterRequest, result);
+    }
+
+    @Test
+    public void testTransformToCharacterRequestWhenHouseIsNotNull() {
+        // GIVEN
+        House house = House.createHouse("house", "slogan");
+        Character character = Character.createCharacter("name", 10, house);
+        CharacterRequest characterRequest = new CharacterRequest();
+        characterRequest.setName(character.getName());
+        characterRequest.setStatus("alive");
+        characterRequest.setArmySize(character.getArmySize());
+        characterRequest.setHouse(character.getHouse().getName());
+        // WHEN
+        CharacterRequest result = underTest.transformToCharacterRequest(character);
+        // THEN
+        Assert.assertEquals(characterRequest, result);
+    }
+
+    @Test
+    public void testTransformToCharacterRequestWhenCharacterIsDead() {
+        // GIVEN
+        Character character = Character.createCharacter("name", 10, null);
+        character.setStatus(CharacterStatus.DEAD);
+        CharacterRequest characterRequest = new CharacterRequest();
+        characterRequest.setName(character.getName());
+        characterRequest.setStatus("dead");
+        characterRequest.setArmySize(character.getArmySize());
+        characterRequest.setHouse("");
+        // WHEN
+        CharacterRequest result = underTest.transformToCharacterRequest(character);
+        // THEN
+        Assert.assertEquals(characterRequest, result);
+    }
+
     private CharacterRequest createCharacterRequestWithoutHouse() {
         CharacterRequest characterRequest = new CharacterRequest();
         characterRequest.setName("name");

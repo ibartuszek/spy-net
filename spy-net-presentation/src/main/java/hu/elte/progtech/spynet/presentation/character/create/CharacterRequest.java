@@ -47,6 +47,28 @@ public class CharacterRequest {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        CharacterRequest that = (CharacterRequest) o;
+
+        if (armySize != that.armySize) return false;
+        if (!name.equals(that.name)) return false;
+        if (!status.equals(that.status)) return false;
+        return house.equals(that.house);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = name.hashCode();
+        result = 31 * result + armySize;
+        result = 31 * result + status.hashCode();
+        result = 31 * result + house.hashCode();
+        return result;
+    }
+
+    @Override
     public String toString() {
         return "CharacterRequest{" +
                 "name='" + name + '\'' +
