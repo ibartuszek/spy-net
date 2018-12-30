@@ -180,6 +180,48 @@ public class CharacterHandlerTest {
         Assert.assertEquals(0, character.getArmySize());
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void testFindCharacterByIdWhenInputIsZero() {
+        // GIVEN
+        // WHEN
+        Character result = underTest.findById(0);
+        // THEN
+        Assert.fail("IllegalArgumentException should be thrown!");
+    }
+
+    @Test
+    public void testFindCharacterByIdWhenCharacterCannotBeFoundInDb() {
+        // GIVEN
+        long id = 1;
+        Character character = null;
+        CharacterDto characterDto = null;
+        BDDMockito.given(characterDao.findById(id)).willReturn(characterDto);
+        BDDMockito.given(characterTransformer.transformFromCharacterDto(characterDto)).willReturn(character);
+        // WHEN
+        Character result = underTest.findById(id);
+        // THEN
+        BDDMockito.verify(characterDao).findById(id);
+        BDDMockito.verify(characterTransformer).transformFromCharacterDto(characterDto);
+        Assert.assertEquals(character, result);
+    }
+
+    @Test
+    public void testFindCharacterByIdWhenInputIsValid() {
+        // GIVEN
+        long id = 1;
+        Character character = Character.createCharacter("name", 0, null);
+        character.setCharacterId(id);
+        CharacterDto characterDto = createCharacterDtoWithoutHouse(character);
+        BDDMockito.given(characterDao.findById(id)).willReturn(characterDto);
+        BDDMockito.given(characterTransformer.transformFromCharacterDto(characterDto)).willReturn(character);
+        // WHEN
+        Character result = underTest.findById(id);
+        // THEN
+        BDDMockito.verify(characterDao).findById(id);
+        BDDMockito.verify(characterTransformer).transformFromCharacterDto(characterDto);
+        Assert.assertEquals(character, result);
+    }
+
     private CharacterDto createCharacterDtoWithoutHouse(Character character) {
         CharacterDto characterDto = new CharacterDto();
         characterDto.setName(character.getName());
@@ -210,5 +252,7 @@ public class CharacterHandlerTest {
                 .thenReturn(character1, character2);
         return characterList;
     }
+
+
 
 }

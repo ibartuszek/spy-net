@@ -1,6 +1,5 @@
 package hu.elte.progtech.spynet.fellowship;
 
-import hu.elte.progtech.spynet.dal.character.CharacterDto;
 import hu.elte.progtech.spynet.dal.fellowship.FellowshipDao;
 import hu.elte.progtech.spynet.dal.fellowship.FellowshipDto;
 import hu.elte.progtech.spynet.domain.fellowship.Fellowship;
@@ -18,6 +17,7 @@ import org.mockito.MockitoAnnotations;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class FellowshipHandlerTest {
 
@@ -141,4 +141,49 @@ public class FellowshipHandlerTest {
         Assert.assertEquals(fellowshipList, resultList);
     }
 
+    @Test(expected=IllegalArgumentException.class)
+    public void testFindByIdWhenInputIsZero() {
+        // GIVEN
+        // WHEN
+        Fellowship result = underTest.findById(0);
+        // THEN
+        Assert.fail("IllegalArgumentException should be thrown!");
+    }
+
+    @Test
+    public void testFindByIdWhenFellowshipCannotBeFoundInDb() {
+        // GIVEN
+        long id = 1;
+        Fellowship fellowship = null;
+        FellowshipDto fellowshipDto = null;
+        BDDMockito.given(fellowshipDao.findById(id)).willReturn(fellowshipDto);
+        BDDMockito.given(fellowshipTransformer.transformFromFellowshipDto(fellowshipDto))
+                .willReturn(fellowship);
+        // WHEN
+        Fellowship result = underTest.findById(id);
+        // THEN
+        BDDMockito.verify(fellowshipDao).findById(id);
+        BDDMockito.verify(fellowshipTransformer).transformFromFellowshipDto(fellowshipDto);
+        Assert.assertEquals(fellowship, result);
+    }
+
+    @Test
+    public void testFindByIdWhenInputIsValid() {
+        // GIVEN
+        long id = 1;
+        House house1 = House.createHouse("name1", "slogan1");
+        House house2 = House.createHouse("name2", "slogan2");
+        Fellowship fellowship = Fellowship.createFellowship(house1, house2, LocalDate.now());
+        fellowship.setFellowshipId(id);
+        FellowshipDto fellowshipDto = FellowshipUtil.createFellowshipDto(fellowship);
+        BDDMockito.given(fellowshipDao.findById(id)).willReturn(fellowshipDto);
+        BDDMockito.given(fellowshipTransformer.transformFromFellowshipDto(fellowshipDto))
+                .willReturn(fellowship);
+        // WHEN
+        Fellowship result = underTest.findById(id);
+        // THEN
+        BDDMockito.verify(fellowshipDao).findById(id);
+        BDDMockito.verify(fellowshipTransformer).transformFromFellowshipDto(fellowshipDto);
+        Assert.assertEquals(fellowship, result);
+    }
 }

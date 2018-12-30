@@ -89,6 +89,98 @@ public class HouseHandlerTest {
         BDDMockito.verify(houseTransformer, BDDMockito.atLeast(2))
                 .transformFromHouseDto(BDDMockito.isA(HouseDto.class));
         Assert.assertEquals(houseList, resultList);
+}
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testGetHouseByNameWhenInputIsNull() {
+        // GIVEN
+        // WHEN
+        underTest.getHouseByName(null);
+        // THEN
+        Assert.fail("IllegalArgumentException should be thrown!");
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testGetHouseByNameWhenInputIsEmptyString() {
+        // GIVEN
+        // WHEN
+        underTest.getHouseByName("");
+        // THEN
+        Assert.fail("IllegalArgumentException should be thrown!");
+    }
+
+    @Test
+    public void testGetHouseByNameWhenTheHouseCannotFindInDb() {
+        // GIVEN
+        String houseName = "house";
+        House house = null;
+        HouseDto houseDto = null; //HouseUtil.createHouseDto(house);
+        BDDMockito.given(houseDao.findByName(houseName)).willReturn(houseDto);
+        BDDMockito.given(houseTransformer.transformFromHouseDto(houseDto)).willReturn(house);
+        // WHEN
+        House result = underTest.getHouseByName(houseName);
+        // THEN
+        BDDMockito.verify(houseDao).findByName(BDDMockito.isA(String.class));
+        BDDMockito.verify(houseTransformer).transformFromHouseDto(null);
+        Assert.assertEquals(house, result);
+    }
+
+    @Test
+    public void testGetHouseByNameWhenInputIsValid() {
+        // GIVEN
+        String houseName = "house";
+        House house = House.createHouse(houseName, "slogan");
+        HouseDto houseDto = HouseUtil.createHouseDto(house);
+        BDDMockito.given(houseDao.findByName(houseName)).willReturn(houseDto);
+        BDDMockito.given(houseTransformer.transformFromHouseDto(houseDto)).willReturn(house);
+        // WHEN
+        House result = underTest.getHouseByName(houseName);
+        // THEN
+        BDDMockito.verify(houseDao).findByName(BDDMockito.isA(String.class));
+        BDDMockito.verify(houseTransformer).transformFromHouseDto(BDDMockito.isA(HouseDto.class));
+        Assert.assertEquals(house, result);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testGetHouseByIdWhenInputIsZero() {
+        // GIVEN
+        // WHEN
+        underTest.getHouseById(0);
+        // THEN
+        Assert.fail("IllegalArgumentException should be thrown!");
+    }
+
+    @Test
+    public void testGetHouseByIdWhenTheHouseCannotFindInDb() {
+        // GIVEN
+        long id = 1;
+        House house = null;
+        HouseDto houseDto = null; //HouseUtil.createHouseDto(house);
+        BDDMockito.given(houseDao.findById(id)).willReturn(houseDto);
+        BDDMockito.given(houseTransformer.transformFromHouseDto(houseDto)).willReturn(house);
+        // WHEN
+        House result = underTest.getHouseById(id);
+        // THEN
+        BDDMockito.verify(houseDao).findById(id);
+        BDDMockito.verify(houseTransformer).transformFromHouseDto(null);
+        Assert.assertEquals(house, result);
+    }
+
+    @Test
+    public void testGetHouseByIdWhenInputIsValid() {
+        // GIVEN
+        long id = 1;
+        House house = House.createHouse("house", "slogan");
+        house.setHouseId(id);
+        HouseDto houseDto = HouseUtil.createHouseDto(house);
+        BDDMockito.given(houseDao.findById(id)).willReturn(houseDto);
+        BDDMockito.given(houseTransformer.transformFromHouseDto(houseDto)).willReturn(house);
+        // WHEN
+        House result = underTest.getHouseById(id);
+        // THEN
+        BDDMockito.verify(houseDao).findById(id);
+        BDDMockito.verify(houseTransformer).transformFromHouseDto(BDDMockito.isA(HouseDto.class));
+        Assert.assertEquals(house, result);
     }
 
 }

@@ -159,4 +159,43 @@ public class CharacterDaoTest {
         BDDMockito.verify(characterRepository).save(exampleCharacterEntity);
     }
 
+    @Test(expected=IllegalArgumentException.class)
+    public void testFindByIdWhenIdIsZero() {
+        // GIVEN
+        // WHEN
+        CharacterDto result = underTest.findById(0);
+        // THEN
+        Assert.fail("IllegalArgumentException should be thrown!");
+    }
+
+    @Test
+    public void testFindByIdWhenCharacterCannotBeFoundInDb() {
+        // GIVEN
+        long id = 1;
+        CharacterEntity characterEntity = null;
+        CharacterDto characterDto = null;
+        BDDMockito.given(characterRepository.findById(id)).willReturn(Optional.empty());
+        // WHEN
+        CharacterDto result = underTest.findById(id);
+        // THEN
+        BDDMockito.verify(characterRepository).findById(id);
+        Assert.assertEquals(characterDto, result);
+    }
+
+    @Test
+    public void testFindByIdWhenInputIsValid() {
+        // GIVEN
+        long id = 1;
+        CharacterEntity characterEntity = CharacterEntity.createCharacterEntity("name", null);
+        characterEntity.setArmySize(0);
+        characterEntity.setCharacterId(id);
+        CharacterDto characterDto = new CharacterDto(characterEntity);
+        BDDMockito.given(characterRepository.findById(id)).willReturn(Optional.of(characterEntity));
+        // WHEN
+        CharacterDto result = underTest.findById(id);
+        // THEN
+        BDDMockito.verify(characterRepository).findById(id);
+        Assert.assertEquals(characterDto, result);
+    }
+
 }

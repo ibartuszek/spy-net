@@ -213,4 +213,45 @@ public class FellowshipDaoTest {
         BDDMockito.verify(entityManager).detach(fellowshipEntity);
         BDDMockito.verify(fellowshipRepository).save(fellowshipEntity);
     }
+
+    @Test(expected=IllegalArgumentException.class)
+    public void testFindByIdWhenInputIsZero() {
+        // GIVEN
+        // WHEN
+        FellowshipDto result = underTest.findById(0);
+        // THEN
+        Assert.fail("IllegalArgumentException should be thrown!");
+    }
+
+    @Test
+    public void testFindByIdWhenFellowshipCannotBeFoundInDb() {
+        // GIVEN
+        long id = 1;
+        FellowshipEntity fellowshipEntity = null;
+        FellowshipDto fellowshipDto = null;
+        BDDMockito.given(fellowshipRepository.findById(id)).willReturn(Optional.empty());
+        // WHEN
+        FellowshipDto result = underTest.findById(id);
+        // THEN
+        BDDMockito.verify(fellowshipRepository).findById(id);
+        Assert.assertEquals(fellowshipDto, result);
+    }
+
+    @Test
+    public void testFindByIdWhenInputIsValid() {
+        // GIVEN
+        long id = 1;
+        HouseEntity houseEntity1 = HouseEntity.createHouseEntity("house1", "slogan1");
+        HouseEntity houseEntity2 = HouseEntity.createHouseEntity("house2", "slogan2");
+        FellowshipEntity fellowshipEntity = FellowshipEntity.createFellowshipEntity(houseEntity1, houseEntity2, LocalDate.now());
+        HouseDto houseDto1 = new HouseDto(houseEntity1);
+        HouseDto houseDto2 = new HouseDto(houseEntity2);
+        FellowshipDto fellowshipDto = new FellowshipDto(fellowshipEntity, houseDto1, houseDto2);
+        BDDMockito.given(fellowshipRepository.findById(id)).willReturn(Optional.of(fellowshipEntity));
+        // WHEN
+        FellowshipDto result = underTest.findById(id);
+        // THEN
+        BDDMockito.verify(fellowshipRepository).findById(id);
+        Assert.assertEquals(fellowshipDto, result);
+    }
 }

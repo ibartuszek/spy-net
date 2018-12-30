@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class HouseDao {
@@ -35,11 +36,21 @@ public class HouseDao {
     public HouseDto findByName(String name) {
         Preconditions.checkArgument(name != null, "name of the house cannot be null!");
         Preconditions.checkArgument(name != "", "name of the house cannot be empty string!");
-        return new HouseDto(houseRepository.findByName(name));
+        Optional<HouseEntity> optionalHouseEntity = houseRepository.findByName(name);
+        return createHouseDto(optionalHouseEntity);
+    }
+
+    private HouseDto createHouseDto(Optional<HouseEntity> optionalHouseEntity) {
+        HouseDto houseDto = null;
+        if (optionalHouseEntity.isPresent()) {
+            houseDto = new HouseDto(optionalHouseEntity.get());
+        }
+        return houseDto;
     }
 
     public HouseDto findById(long id) {
         Preconditions.checkArgument(id != 0, "id of the house cannot be zero!");
-        return new HouseDto(houseRepository.findById(id).get());
+        Optional<HouseEntity> optionalHouseEntity = houseRepository.findById(id);
+        return createHouseDto(optionalHouseEntity);
     }
 }
