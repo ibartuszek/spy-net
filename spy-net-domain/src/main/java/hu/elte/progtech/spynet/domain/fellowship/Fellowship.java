@@ -7,15 +7,15 @@ import java.time.LocalDate;
 public class Fellowship {
 
     private long fellowshipId;
-    private House houese1;
-    private House houese2;
+    private House house1;
+    private House house2;
     private LocalDate begin;
     private LocalDate end;
 
     public static Fellowship createFellowship(House house1, House house2, LocalDate startDate) {
         Fellowship fellowship = new Fellowship();
-        fellowship.setHouese1(house1);
-        fellowship.setHouese2(house2);
+        fellowship.setHouse1(house1);
+        fellowship.setHouse2(house2);
         fellowship.setBegin(startDate);
         return fellowship;
     }
@@ -28,20 +28,20 @@ public class Fellowship {
         this.fellowshipId = fellowshipId;
     }
 
-    public House getHouese1() {
-        return houese1;
+    public House getHouse1() {
+        return house1;
     }
 
-    public void setHouese1(House houese1) {
-        this.houese1 = houese1;
+    public void setHouse1(House house1) {
+        this.house1 = house1;
     }
 
-    public House getHouese2() {
-        return houese2;
+    public House getHouse2() {
+        return house2;
     }
 
-    public void setHouese2(House houese2) {
-        this.houese2 = houese2;
+    public void setHouse2(House house2) {
+        this.house2 = house2;
     }
 
     public LocalDate getBegin() {
@@ -79,8 +79,8 @@ public class Fellowship {
     public String toString() {
         return "Fellowship{" +
                 "fellowshipId=" + fellowshipId +
-                ", houese1=" + houese1 +
-                ", houese2=" + houese2 +
+                ", house1=" + house1 +
+                ", house2=" + house2 +
                 ", begin=" + begin +
                 ", end=" + end +
                 '}';

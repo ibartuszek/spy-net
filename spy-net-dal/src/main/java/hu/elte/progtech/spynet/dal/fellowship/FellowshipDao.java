@@ -107,4 +107,15 @@ public class FellowshipDao {
         fellowshipRepository.save(fellowshipEntity);
     }
 
+    public FellowshipDto findById(long fellowshipId) {
+        Preconditions.checkArgument(fellowshipId != 0, "fellowshipId cannot be 0!");
+        Optional<FellowshipEntity> optionalFellowshipEntity = fellowshipRepository.findById(fellowshipId);
+        FellowshipDto fellowshipDto = null;
+        if (optionalFellowshipEntity.isPresent()) {
+            FellowshipEntity fellowshipEntity = optionalFellowshipEntity.get();
+            fellowshipDto = new FellowshipDto(fellowshipEntity,
+                    new HouseDto(fellowshipEntity.getHouse1()), new HouseDto(fellowshipEntity.getHouse2()));
+        }
+        return fellowshipDto;
+    }
 }

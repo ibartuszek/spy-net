@@ -15,7 +15,8 @@ import java.util.TimeZone;
 @Configuration
 @Import({DataBaseConfiguration.class})
 // @PropertySource(value = {"classpath:/properties/wager.properties"}, encoding = "UTF-8")
-@ComponentScan(basePackages = {"hu.elte.progtech.spynet.domain"})
+// @ComponentScan(basePackages = {"hu.elte.progtech.spynet.domain"})
+@ComponentScan("hu.elte.progtech.spynet.domain")
 public class AppConfiguration {
 
     @PostConstruct

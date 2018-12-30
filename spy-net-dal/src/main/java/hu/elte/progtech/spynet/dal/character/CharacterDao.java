@@ -81,4 +81,13 @@ public class CharacterDao {
         characterRepository.save(characterEntity);
     }
 
+    public CharacterDto findById(long characterId) {
+        Preconditions.checkArgument(characterId != 0, "characterId cannot be 0!");
+        Optional<CharacterEntity> optionalCharacterEntity = characterRepository.findById(characterId);
+        CharacterDto characterDto = null;
+        if (optionalCharacterEntity.isPresent()) {
+            characterDto = new CharacterDto(optionalCharacterEntity.get());
+        }
+        return characterDto;
+    }
 }

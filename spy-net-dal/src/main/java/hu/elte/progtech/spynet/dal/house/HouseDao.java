@@ -31,4 +31,15 @@ public class HouseDao {
         }
         return houseDtoList;
     }
+
+    public HouseDto findByName(String name) {
+        Preconditions.checkArgument(name != null, "name of the house cannot be null!");
+        Preconditions.checkArgument(name != "", "name of the house cannot be empty string!");
+        return new HouseDto(houseRepository.findByName(name));
+    }
+
+    public HouseDto findById(long id) {
+        Preconditions.checkArgument(id != 0, "id of the house cannot be zero!");
+        return new HouseDto(houseRepository.findById(id).get());
+    }
 }

@@ -20,7 +20,7 @@ import java.util.Properties;
 
 @Configuration
 @EnableTransactionManagement
-@ComponentScan(basePackages = "hu.elte.progtech.spynet.dal.*")
+@ComponentScan("hu.elte.progtech.spynet.dal.*")
 @EnableJpaRepositories(basePackages = "hu.elte.progtech.spynet.dal.*")
 public class DataBaseConfiguration {
 
@@ -68,7 +68,7 @@ public class DataBaseConfiguration {
     Properties additionalProperties() {
         Properties properties = new Properties();
         properties.setProperty("hibernate.show_sql", "false");
-        properties.setProperty("hibernate.hbm2ddl.auto", "create");
+        properties.setProperty("hibernate.hbm2ddl.auto", "none");
         properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
         return properties;
     }

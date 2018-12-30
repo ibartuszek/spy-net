@@ -13,9 +13,9 @@ public class FellowshipEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long fellowshipId;
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, optional = false)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private HouseEntity house1;
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, optional = false)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private HouseEntity house2;
     @Column(length = 20, nullable = false)
     private Date begin;

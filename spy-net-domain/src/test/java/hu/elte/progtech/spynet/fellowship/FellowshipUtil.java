@@ -10,8 +10,8 @@ public class FellowshipUtil {
     public static FellowshipDto createFellowshipDto(Fellowship fellowship) {
         FellowshipDto fellowshipDto = new FellowshipDto();
         fellowshipDto.setBegin(fellowship.getBegin());
-        HouseDto houseDto1 = HouseUtil.createHouseDto(fellowship.getHouese1());
-        HouseDto houseDto2 = HouseUtil.createHouseDto(fellowship.getHouese2());
+        HouseDto houseDto1 = HouseUtil.createHouseDto(fellowship.getHouse1());
+        HouseDto houseDto2 = HouseUtil.createHouseDto(fellowship.getHouse2());
         fellowshipDto.setHouse1(houseDto1);
         fellowshipDto.setHouse2(houseDto2);
         fellowshipDto.setFellowshipId(fellowship.getFellowshipId());

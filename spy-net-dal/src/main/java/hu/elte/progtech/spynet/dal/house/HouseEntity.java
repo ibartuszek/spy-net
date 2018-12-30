@@ -12,10 +12,10 @@ public class HouseEntity {
     private long houseId;
     @Column(length = 20, nullable = false, unique = true)
     private String name;
-    @Column(length = 20, nullable = false, unique = true)
+    @Column(length = 40, nullable = false, unique = true)
     private String slogan;
     @Lob
-    private Byte[] crest;
+    private byte[] crest;
     @Version
     private long version;
 
@@ -51,11 +51,11 @@ public class HouseEntity {
         this.slogan = slogan;
     }
 
-    public Byte[] getCrest() {
+    public byte[] getCrest() {
         return crest;
     }
 
-    public void setCrest(Byte[] crest) {
+    public void setCrest(byte[] crest) {
         this.crest = crest;
     }
 
@@ -98,7 +98,7 @@ public class HouseEntity {
         houseEntity.setName(name);
         houseEntity.setSlogan(slogan);
         houseEntity.setVersion(1);
-        houseEntity.setCrest(new Byte[16]);
+        houseEntity.setCrest(new byte[16]);
         return houseEntity;
     }
 }

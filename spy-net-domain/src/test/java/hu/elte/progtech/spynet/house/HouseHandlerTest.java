@@ -1,9 +1,7 @@
 package hu.elte.progtech.spynet.house;
 
-import hu.elte.progtech.spynet.dal.character.CharacterDto;
 import hu.elte.progtech.spynet.dal.house.HouseDao;
 import hu.elte.progtech.spynet.dal.house.HouseDto;
-import hu.elte.progtech.spynet.domain.character.Character;
 import hu.elte.progtech.spynet.domain.house.House;
 import hu.elte.progtech.spynet.domain.house.HouseHandler;
 import hu.elte.progtech.spynet.domain.house.HouseTransformer;

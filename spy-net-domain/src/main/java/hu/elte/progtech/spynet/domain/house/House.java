@@ -7,7 +7,7 @@ public class House {
     private long houseId;
     private String name;
     private String slogan;
-    private Byte[] crest;
+    private byte[] crest;
 
     public static House createHouse(String name, String slogan) {
         House house = new House();
@@ -40,11 +40,11 @@ public class House {
         this.slogan = slogan;
     }
 
-    public Byte[] getCrest() {
+    public byte[] getCrest() {
         return crest;
     }
 
-    public void setCrest(Byte[] crest) {
+    public void setCrest(byte[] crest) {
         this.crest = crest;
     }
 

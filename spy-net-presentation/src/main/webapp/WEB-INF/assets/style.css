@@ -1,0 +1,88 @@
+body {
+    background-color: black;
+}
+
+main {
+    background-color: #212529;
+}
+
+.jumbotron {
+    height: 10em;
+    border-radius: 1em 1em 0em 0em;
+    margin-bottom: 0;
+    background-image: url("./images/wallpaper.jpg");
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.navbar {
+    padding: 0;
+    background-color: crimson;
+}
+
+.table {
+    border-radius: 1em;
+}
+
+.table tr,
+.table tr th,
+.table tr td {
+    height: 4em;
+    background-color: lightgray;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.my-picture-column {
+    width: 30%;
+}
+
+.my-figure img {
+    height: 8em;
+}
+
+.my-figure {
+    margin: 0;
+}
+
+.my-button-row {
+    background-color: #343a40;
+    height: 4em;
+    vertical-align: center;
+}
+
+.btn a {
+    color: #fff;
+}
+
+.btn a:hover {
+    text-decoration: none;
+}
+
+.my-centered {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.eighty-width {
+    width: 80%;
+}
+
+.input-group-text {
+    background-color: lightgray;
+    border-radius: 0.5em 0 0 0.5em;
+}
+
+.alert {
+    display: inline-block;
+    padding: 0.5em;
+    margin: 0.5em;
+    color: crimson;
+    background-color: lightgray;
+}
+
+.white-color {
+    color: #fff;
+}
+

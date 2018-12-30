@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../assets/reset.css" type="text/css" media="all">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="../assets/style.css" type="text/css" media="all">
+    <title>Main</title>
+</head>
+<body class="eighty-width my-centered">
+    <header>
+        <div class="jumbotron">
+            <h1 class="display-4 text-right"><kbd>Spy-net</kbd></h1>
+            <hr class="my-4">
+        </div>
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <!-- <a class="navbar-brand" href="#">Navbar w/ text</a> -->
+            <!-- <span class="navbar-text">Menu</span> -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+                    aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse navbar-dark" id="navbarText">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Menu
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="#">Home</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">List of the houses</a>
+                            <a class="dropdown-item" href="#">Create new house</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">List of characters</a>
+                            <a class="dropdown-item" href="#">Modify character</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">List of fellowships</a>
+                            <a class="dropdown-item" href="#">Modify fellowship</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownHelpLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Help
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item disabled" href="#">Help</a>
+                            <a class="dropdown-item disabled" href="#">Contact</a>
+                        </div>
+                    </li>
+                </ul>
+                <span class="navbar-text"></span>
+            </div>
+        </nav>
+
+    </header>
+    <main>
+        <!-- Houses -->
+        <div class="eighty-width my-centered">
+            <div class="row my-centered my-button-row">
+                <div class="form-inline col-sm-3">
+                    <button type="button" class="btn btn-dark my-centered">Create new house</button>
+                </div>
+            </div>
+        </div>
+        <table class="table eighty-width my-centered">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th class="my-picture-column" scope="col">Crest</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th rowspan="2" scope="row">1</th>
+                    <th>House:</th>
+                    <td>house</td>
+                    <td rowspan="2">
+                        <figure class="my-figure">
+                            <img src="../images/guitar.jpg">
+                        </figure>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Slogan:</td>
+                    <td>slogan</td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- Characters -->
+        <div class="eighty-width my-centered">
+            <div class="row my-centered my-button-row">
+                <div class="form-inline col-sm-3 mr-auto">
+                    <button type="button" class="btn btn-dark my-centered">Create new character</button>
+                </div>
+                <form class="form-inline col-sm-4">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-dark" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+        <table class="table eighty-width my-centered">
+            <thead class="thead-light">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Number of army</th>
+                <th scope="col">Status</th>
+                <th scope="col">House</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th scope="col">1</th>
+                <td scope="col">name</td>
+                <td scope="col">number of army</td>
+                <td scope="col">status</td>
+                <td scope="col">house</td>
+            </tr>
+            </tbody>
+        </table>
+        <!-- Fellowships -->
+        <div class="eighty-width my-centered">
+            <div class="row my-centered my-button-row">
+                <div class="form-inline col-sm-3 mr-auto">
+                    <button type="button" class="btn btn-dark my-centered">Create new fellowship</button>
+                </div>
+            </div>
+        </div>
+        <table class="table eighty-width my-centered">
+            <thead class="thead-light">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">House</th>
+                <th scope="col">House</th>
+                <th scope="col">Begin of fellowship</th>
+                <th scope="col">End of fellowship</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th scope="col">1</th>
+                <td scope="col">house1</td>
+                <td scope="col">house2</td>
+                <td scope="col">yyyy-mm-dd</td>
+                <td scope="col">yyyy-mm-dd</td>
+            </tr>
+            </tbody>
+        </table>
+        <!-- Create new character -->
+        <form class="eighty-width my-centered">
+            <div class="row my-centered my-button-row">
+                <div class="form-inline col-sm-2">
+                    <button type="button" class="btn btn-dark my-centered">Add new character</button>
+                </div>
+                <div class="form-inline col-sm-2">
+                    <button type="button" class="btn btn-dark my-centered">Cancel</button>
+                </div>
+            </div>
+            <div class="input-group mb-2">
+                <span class="input-group-addon input-group-text">Character's name</span>
+                <input type="text" name="name" class="form-control"/>
+            </div>
+            <div class="input-group mb-2">
+                <span class="input-group-addon input-group-text">Size of directed army</span>
+                <input type="number" name="numberOfArmy" class="form-control"/>
+            </div>
+            <div class="input-group mb-2">
+                <span class="input-group-addon input-group-text">House</span>
+                <input type="radio" name="status" class="custom-select"/>
+            </div>
+        </form>
+    </main>
+
+
+    <footer>
+
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+</body>
+</html>

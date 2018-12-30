@@ -29,6 +29,19 @@ public class HouseHandler implements HouseService {
         return transformToHouseList(houseDao.listHouses());
     }
 
+    @Override
+    public House getHouseByName(String name) {
+        Preconditions.checkArgument(name != null, "name of the house cannot be null!");
+        Preconditions.checkArgument(name != "", "name of the house cannot be empty string!");
+        return houseTransformer.transformFromHouseDto(houseDao.findByName(name));
+    }
+
+    @Override
+    public House getHouseById(long id) {
+        Preconditions.checkArgument(id != 0, "id of the house cannot be zero!");
+        return houseTransformer.transformFromHouseDto(houseDao.findById(id));
+    }
+
     private List<House> transformToHouseList(List<HouseDto> houseDtoList) {
         List<House> houseList = new ArrayList<>();
         for (HouseDto houseDto : houseDtoList) {

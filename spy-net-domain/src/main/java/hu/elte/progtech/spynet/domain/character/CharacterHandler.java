@@ -19,6 +19,12 @@ public class CharacterHandler implements CharacterService {
     private CharacterTransformer characterTransformer;
 
     @Override
+    public Character findById(long characterId) {
+        Preconditions.checkArgument(characterId != 0, "characterId cannot be 0!");
+        return characterTransformer.transformFromCharacterDto(characterDao.findById(characterId));
+    }
+
+    @Override
     public List<Character> listCharacters() {
         return transformToCharacterList(characterDao.listCharacters());
     }

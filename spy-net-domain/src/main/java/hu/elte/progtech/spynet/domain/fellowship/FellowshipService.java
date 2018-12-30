@@ -7,5 +7,5 @@ public interface FellowshipService {
     void saveFellowship(Fellowship fellowship);
     void updateFellowship(Fellowship fellowship);
     List<Fellowship> listFellowships();
-
+    Fellowship findById(long fellowshipId);
 }

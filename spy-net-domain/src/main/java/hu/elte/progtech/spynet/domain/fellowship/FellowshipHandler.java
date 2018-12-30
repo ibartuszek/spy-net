@@ -36,6 +36,12 @@ public class FellowshipHandler implements FellowshipService {
         return convertToFellowshipList(fellowshipDao.listFellowships());
     }
 
+    @Override
+    public Fellowship findById(long fellowshipId) {
+        Preconditions.checkArgument(fellowshipId != 0, "fellowshipId cannot be 0!");
+        return fellowshipTransformer.transformFromFellowshipDto(fellowshipDao.findById(fellowshipId));
+    }
+
     private List<Fellowship> convertToFellowshipList(List<FellowshipDto> fellowshipDtoList) {
         List<Fellowship> fellowshipList = new ArrayList<>();
         for (FellowshipDto fellowshipDto : fellowshipDtoList) {
