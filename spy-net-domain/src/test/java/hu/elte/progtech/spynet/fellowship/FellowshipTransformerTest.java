@@ -6,6 +6,7 @@ import hu.elte.progtech.spynet.domain.fellowship.Fellowship;
 import hu.elte.progtech.spynet.domain.fellowship.FellowshipTransformer;
 import hu.elte.progtech.spynet.domain.house.House;
 import hu.elte.progtech.spynet.domain.house.HouseTransformer;
+import hu.elte.progtech.spynet.house.HouseUtil;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -45,13 +46,16 @@ public class FellowshipTransformerTest {
         House house1 = House.createHouse("house1", "slogan1");
         House house2 = House.createHouse("house2", "slogan2");
         Fellowship fellowship = Fellowship.createFellowship(house1, house2, LocalDate.now());
+        HouseDto houseDto1 = HouseUtil.createHouseDto(house1);
+        HouseDto houseDto2 = HouseUtil.createHouseDto(house2);
         FellowshipDto fellowshipDto = FellowshipUtil.createFellowshipDto(fellowship);
-        BDDMockito.given(houseTransformer.transformToHouseDto(house1)).willReturn(BDDMockito.isA(HouseDto.class));
-        BDDMockito.given(houseTransformer.transformToHouseDto(house2)).willReturn(BDDMockito.isA(HouseDto.class));
+        BDDMockito.given(houseTransformer.transformToHouseDto(house1)).willReturn(houseDto1);
+        BDDMockito.given(houseTransformer.transformToHouseDto(house2)).willReturn(houseDto2);
         // WHEN
         FellowshipDto result = underTest.transformToFellowshipDto(fellowship);
         // THEN
-        BDDMockito.verify(houseTransformer, BDDMockito.atLeast(2)).transformToHouseDto(house1);
+        BDDMockito.verify(houseTransformer, BDDMockito.atLeast(2))
+                .transformToHouseDto(BDDMockito.isA(House.class));
         Assert.assertEquals(fellowshipDto, result);
     }
 
@@ -71,9 +75,14 @@ public class FellowshipTransformerTest {
         House house1 = House.createHouse("house1", "slogan1");
         House house2 = House.createHouse("house2", "slogan2");
         Fellowship fellowship = Fellowship.createFellowship(house1, house2, LocalDate.now());
-        FellowshipDto fellowshipDto = FellowshipUtil.createFellowshipDto(fellowship);
-        BDDMockito.given(houseTransformer.transformFromHouseDto(BDDMockito.isA(HouseDto.class)))
-                .willReturn(BDDMockito.isA(House.class));
+        HouseDto houseDto1 = HouseUtil.createHouseDto(house1);
+        HouseDto houseDto2 = HouseUtil.createHouseDto(house2);
+        FellowshipDto fellowshipDto = new FellowshipDto();
+        fellowshipDto.setHouse1(houseDto1);
+        fellowshipDto.setHouse2(houseDto2);
+        fellowshipDto.setBegin(fellowship.getBegin());
+        BDDMockito.when(houseTransformer.transformFromHouseDto(BDDMockito.isA(HouseDto.class)))
+                .thenReturn(house1, house2);
         // WHEN
         Fellowship result = underTest.transformFromFellowshipDto(fellowshipDto);
         // THEN

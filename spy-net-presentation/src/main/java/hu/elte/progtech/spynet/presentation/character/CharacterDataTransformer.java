@@ -45,19 +45,6 @@ public class CharacterDataTransformer {
         }
     }
 
-        public Character transformFromCharacterData(CharacterData characterData) {
-            Character character = null;
-            if (characterData != null) {
-                character = new Character();
-                character.setCharacterId(characterData.getCharacterId());
-                character.setName(characterData.getName());
-                setCharacterStatus(character, characterData.getStatus());
-                setCharacterArmySize(character, characterData.getArmySize());
-                setCharacterHouse(character, characterData.getHouse());
-            }
-            return character;
-        }
-
     private void setCharacterStatus(Character character, String status) {
         if ("dead".equals(status)) {
             character.setStatus(CharacterStatus.DEAD);

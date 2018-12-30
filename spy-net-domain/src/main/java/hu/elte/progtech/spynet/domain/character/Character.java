@@ -66,12 +66,19 @@ public class Character {
 
         Character character = (Character) o;
 
-        return characterId == character.characterId;
+        if (armySize != character.armySize) return false;
+        if (!name.equals(character.name)) return false;
+        if (status != character.status) return false;
+        return house != null ? house.equals(character.house) : character.house == null;
     }
 
     @Override
     public int hashCode() {
-        return (int) (characterId ^ (characterId >>> 32));
+        int result = name.hashCode();
+        result = 31 * result + armySize;
+        result = 31 * result + status.hashCode();
+        result = 31 * result + (house != null ? house.hashCode() : 0);
+        return result;
     }
 
     @Override

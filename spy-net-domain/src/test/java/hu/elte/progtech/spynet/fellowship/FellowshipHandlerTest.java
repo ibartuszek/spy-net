@@ -51,6 +51,7 @@ public class FellowshipHandlerTest {
         House house1 = House.createHouse("house1", "slogan1");
         House house2 = House.createHouse("house2", "slogan2");
         Fellowship fellowship = Fellowship.createFellowship(house1, house2, LocalDate.now());
+
         FellowshipDto fellowshipDto = FellowshipUtil.createFellowshipDto(fellowship);
         BDDMockito.given(fellowshipTransformer.transformToFellowshipDto(fellowship))
                 .willReturn(fellowshipDto);

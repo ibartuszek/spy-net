@@ -105,10 +105,11 @@ public class CharacterTransformerTest {
         character.setStatus(CharacterStatus.ALIVE);
         character.setCharacterId(characterDto.getCharacterId());
         character.setHouse(house);
-        BDDMockito.given(houseTransformer.transformToHouseDto(house)).willReturn(houseDto);
+        BDDMockito.given(houseTransformer.transformFromHouseDto(houseDto)).willReturn(house);
         // WHEN
         Character result = underTest.transformFromCharacterDto(characterDto);
         // THEN
+        BDDMockito.verify(houseTransformer).transformFromHouseDto(houseDto);
         Assert.assertEquals(character, result);
     }
 

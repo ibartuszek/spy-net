@@ -55,12 +55,15 @@ public class House {
 
         House house = (House) o;
 
-        return houseId == house.houseId;
+        if (!name.equals(house.name)) return false;
+        return slogan.equals(house.slogan);
     }
 
     @Override
     public int hashCode() {
-        return (int) (houseId ^ (houseId >>> 32));
+        int result = name.hashCode();
+        result = 31 * result + slogan.hashCode();
+        return result;
     }
 
     @Override
