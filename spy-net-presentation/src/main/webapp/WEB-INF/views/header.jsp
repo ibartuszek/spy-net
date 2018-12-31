@@ -10,7 +10,7 @@
         <h1 class="display-4 text-right"><kbd>Spy-net</kbd></h1>
         <hr class="my-4">
     </div>
-    <nav class="navbar navbar-expand-lg navbar-light">
+    <nav id="navBar" class="navbar navbar-expand-lg navbar-light">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
                 aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>

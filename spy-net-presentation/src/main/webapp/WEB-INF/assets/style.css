@@ -4,6 +4,21 @@ body {
 
 main {
     background-color: #212529;
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+
+footer {
+    background-color: crimson;
+    border-radius: 0em 0em 1em 1em;
+}
+
+.footer.text {
+    display: inline-block;
+    margin-top: auto;
+    margin-bottom: auto;
+    height: 3em;
+    padding: 0.5em;
 }
 
 .jumbotron {
@@ -84,5 +99,9 @@ main {
 
 .white-color {
     color: #fff;
+}
+
+.inline-block {
+    display:inline-block;
 }
 
