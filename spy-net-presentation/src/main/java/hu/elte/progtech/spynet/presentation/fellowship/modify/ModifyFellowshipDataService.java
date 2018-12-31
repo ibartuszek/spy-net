@@ -32,7 +32,7 @@ public class ModifyFellowshipDataService {
         FellowshipRequest fellowshipRequest = new FellowshipRequest();
         if (modifyFellowshipRequest.getFellowshipId() != 0) {
             Fellowship fellowship = fellowshipService.findById(modifyFellowshipRequest.getFellowshipId());
-            fellowshipRequest = fellowshipDataTransformer.transformToCharacterRequest(fellowship);
+            fellowshipRequest = fellowshipDataTransformer.transformToFellowshipRequest(fellowship);
         }
         return fellowshipRequest;
     }
@@ -100,6 +100,10 @@ public class ModifyFellowshipDataService {
     }
 
     private void modifyFellowship(Fellowship fellowship, FellowshipRequest fellowshipRequest) {
-        fellowship.setEnd(LocalDate.parse(fellowshipRequest.getBegin(), dateTimeFormatter));
+        fellowship.setEnd(LocalDate.parse(fellowshipRequest.getEnd(), dateTimeFormatter));
+    }
+
+    public void setDateTimeFormatter(DateTimeFormatter dateTimeFormatter) {
+        this.dateTimeFormatter = dateTimeFormatter;
     }
 }

@@ -36,9 +36,9 @@ public class CreateFellowshipDataService {
     }
 
     private boolean checkFellowship(FellowshipRequest fellowshipRequest) {
-        if (fellowshipRequest.getHouse1().equals(fellowshipRequest.getHouse2())) {
+        /*if (fellowshipRequest.getHouse1().equals(fellowshipRequest.getHouse2())) {
             return true;
-        }
+        }*/
         List<FellowshipData> fellowshipDataList = fellowshipDataService.getFellowshipDataList();
         boolean found = false;
         int index = 0;

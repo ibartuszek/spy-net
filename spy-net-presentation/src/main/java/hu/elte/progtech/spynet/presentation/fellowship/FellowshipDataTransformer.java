@@ -43,24 +43,6 @@ public class FellowshipDataTransformer {
         return fellowshipData;
     }
 
-    /*
-        public Fellowship transformFromFellowshipData(FellowshipData fellowshipData) {
-            Fellowship fellowship = null;
-            if (fellowshipData != null && fellowshipData.getBegin() != null
-                    && fellowshipData.getHouse1() != null && fellowshipData.getHouse2() != null) {
-                fellowship = new Fellowship();
-                fellowship.setHouse1(houseDataTransformer.transformFromHouseData(
-                        houseDataService.getHouseDataByName(fellowshipData.getHouse1())));
-                fellowship.setHouse2(houseDataTransformer.transformFromHouseData(
-                        houseDataService.getHouseDataByName(fellowshipData.getHouse2())));
-                fellowship.setBegin(LocalDate.parse(fellowshipData.getBegin(), dateTimeFormatter));
-                if (!"".equals(fellowshipData.getEnd())) {
-                    fellowship.setEnd(LocalDate.parse(fellowshipData.getBegin(), dateTimeFormatter));
-                }
-            }
-            return fellowship;
-        }
-    */
     public Fellowship transformFromFellowshipRequest(FellowshipRequest fellowshipRequest) {
         Fellowship fellowship = null;
         if (fellowshipRequest != null && fellowshipRequest.getBegin() != null
@@ -72,13 +54,13 @@ public class FellowshipDataTransformer {
                     houseDataService.getHouseDataByName(fellowshipRequest.getHouse2())));
             fellowship.setBegin(LocalDate.parse(fellowshipRequest.getBegin(), dateTimeFormatter));
             if (!"".equals(fellowshipRequest.getEnd())) {
-                fellowship.setEnd(LocalDate.parse(fellowshipRequest.getBegin(), dateTimeFormatter));
+                fellowship.setEnd(LocalDate.parse(fellowshipRequest.getEnd(), dateTimeFormatter));
             }
         }
         return fellowship;
     }
 
-    public FellowshipRequest transformToCharacterRequest(Fellowship fellowship) {
+    public FellowshipRequest transformToFellowshipRequest(Fellowship fellowship) {
         FellowshipRequest fellowshipRequest = null;
         if (fellowship != null) {
             fellowshipRequest = new FellowshipRequest();
@@ -93,5 +75,9 @@ public class FellowshipDataTransformer {
             }
         }
         return fellowshipRequest;
+    }
+
+    public void setDateTimeFormatter(DateTimeFormatter dateTimeFormatter) {
+        this.dateTimeFormatter = dateTimeFormatter;
     }
 }

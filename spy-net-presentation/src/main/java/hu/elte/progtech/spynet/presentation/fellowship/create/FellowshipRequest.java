@@ -49,6 +49,28 @@ public class FellowshipRequest {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        FellowshipRequest that = (FellowshipRequest) o;
+
+        if (!house1.equals(that.house1)) return false;
+        if (!house2.equals(that.house2)) return false;
+        if (!begin.equals(that.begin)) return false;
+        return end.equals(that.end);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = house1.hashCode();
+        result = 31 * result + house2.hashCode();
+        result = 31 * result + begin.hashCode();
+        result = 31 * result + end.hashCode();
+        return result;
+    }
+
+    @Override
     public String toString() {
         return "FellowshipRequest{" +
                 "house1='" + house1 + '\'' +

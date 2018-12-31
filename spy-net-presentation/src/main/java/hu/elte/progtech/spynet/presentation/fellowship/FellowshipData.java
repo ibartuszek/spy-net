@@ -64,12 +64,21 @@ public class FellowshipData {
 
         FellowshipData that = (FellowshipData) o;
 
-        return fellowshipId == that.fellowshipId;
+        if (!house1.equals(that.house1)) return false;
+        if (!house2.equals(that.house2)) return false;
+        if (!begin.equals(that.begin)) return false;
+        if (!end.equals(that.end)) return false;
+        return fellowshipUrl.equals(that.fellowshipUrl);
     }
 
     @Override
     public int hashCode() {
-        return (int) (fellowshipId ^ (fellowshipId >>> 32));
+        int result = house1.hashCode();
+        result = 31 * result + house2.hashCode();
+        result = 31 * result + begin.hashCode();
+        result = 31 * result + end.hashCode();
+        result = 31 * result + fellowshipUrl.hashCode();
+        return result;
     }
 
     @Override
