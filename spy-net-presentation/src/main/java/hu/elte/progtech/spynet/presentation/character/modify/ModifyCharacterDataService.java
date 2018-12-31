@@ -14,6 +14,9 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+/**
+ * The class is a singleton class of which responsibility is to handle of the controller's requests.
+ */
 @Component
 public class ModifyCharacterDataService {
 
@@ -29,6 +32,11 @@ public class ModifyCharacterDataService {
     @Autowired
     private CharacterDataTransformer characterDataTransformer;
 
+    /**
+     * Create a characterRequest object from the request parameter.
+     * @param modifyCharacterRequest is the input object, which holds the id of the character.
+     * @return a CharacterRequest object which can be found in db or an empty object.
+     */
     public CharacterRequest createCharacterRequest(ModifyCharacterRequest modifyCharacterRequest) {
         CharacterRequest characterRequest = new CharacterRequest();
         if (modifyCharacterRequest.getCharacterId() != 0) {
@@ -38,6 +46,12 @@ public class ModifyCharacterDataService {
         return characterRequest;
     }
 
+    /**
+     * It saves the character. If it exists and is valid then service transformates it.
+     * The transformated object will send to the domain layer to update it.
+     * @param characterRequest
+     * @return a boolean, which is true if it can send to domain the requests.
+     */
     public boolean saveCharacter(CharacterRequest characterRequest) {
         boolean modified = false;
         List<CharacterData> characterDataList = characterDataService.getCharacterDataList();

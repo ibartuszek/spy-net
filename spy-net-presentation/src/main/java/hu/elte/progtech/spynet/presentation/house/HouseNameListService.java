@@ -5,6 +5,10 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+/**
+ * The class is a singleton class of which responsibility is to create a List<String> object,
+ * which holds the existing houses' name.
+ */
 @Component
 public class HouseNameListService {
 
@@ -14,6 +18,10 @@ public class HouseNameListService {
     @Autowired
     private HouseDataService houseDataService;
 
+    /**
+     * It updates the list (ask for the data from domain layer) and get back the new list.
+     * @return List<String>
+     */
     public List<String> getHouseNameList() {
         updateHouseNameList();
         return houseNameList;

@@ -9,6 +9,10 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * It is a service class, which is responsible for the service methods of fellowships.
+ * It is the implementation of FellowshipService interface.
+ */
 @Component("fellowshipService")
 public class FellowshipHandler implements FellowshipService {
 

@@ -9,6 +9,10 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * It is a service class, which is responsible for the service methods of houses.
+ * It is the implementation of HouseService interface.
+ */
 @Component("houseService")
 public class HouseHandler implements HouseService {
 

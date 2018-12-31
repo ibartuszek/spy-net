@@ -10,6 +10,10 @@ import hu.elte.progtech.spynet.presentation.house.HouseDataTransformer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+/**
+ * The class is a singleton class of which responsibility is to transform between:
+ * character to characterData, characterRequest to character or character to characterRequest.
+ */
 @Component
 public class CharacterDataTransformer {
 

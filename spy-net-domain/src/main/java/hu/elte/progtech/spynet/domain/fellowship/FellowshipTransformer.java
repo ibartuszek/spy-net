@@ -9,6 +9,10 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 
+/**
+ * The class is a singleton class of which responsibility is to transform fellowship to fellowshipDto
+ * or fellowshipDto to fellowship.
+ */
 @Component
 public class FellowshipTransformer {
 

@@ -7,7 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
-
+/**
+ * This class is a singleton and a controller. It makes contact between view: characters and Service.
+ */
 @Controller
 public class CharacterDataController {
 
@@ -25,6 +27,10 @@ public class CharacterDataController {
         }
     }
 
+    /**
+     * Gives back the main page.
+     * @return a view
+     */
     @RequestMapping(value = {REQUEST_MAPPING}, method = RequestMethod.GET)
     public String characters() {
         return "characters";

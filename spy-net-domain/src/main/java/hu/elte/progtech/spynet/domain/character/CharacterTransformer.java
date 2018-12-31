@@ -7,6 +7,10 @@ import hu.elte.progtech.spynet.domain.house.HouseTransformer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+/**
+ * The class is a singleton class of which responsibility is to transform character to characterDto
+ * or characterDto to character.
+ */
 @Component
 public class CharacterTransformer {
 

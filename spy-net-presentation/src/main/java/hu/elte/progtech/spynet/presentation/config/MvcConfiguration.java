@@ -14,6 +14,9 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This configuration file is the responsible for the settings of the presentation layer.
+ */
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = "hu.elte.progtech.spynet.presentation.*")

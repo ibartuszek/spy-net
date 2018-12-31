@@ -11,6 +11,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.validation.Valid;
 import java.util.List;
 
+/**
+ * This class is a singleton and a controller. It makes contact between view: createCharacter and Service.
+ */
 @Controller
 public class CreateCharacterDataController {
 
@@ -40,11 +43,19 @@ public class CreateCharacterDataController {
         return characterRequest;
     }
 
+    /**
+     * Gives back the main page.
+     * @return a view
+     */
     @RequestMapping(REQUEST_MAPPING)
     public String createCharacter() {
         return "createCharacter";
     }
 
+    /**
+     * It transfer the form object to the service than redirect.
+     * @return a view of homepage.
+     */
     @RequestMapping("/postCreateCharacterData.html")
     public String createCharacterFromForm(@Valid @ModelAttribute("characterRequest") CharacterRequest characterRequest,
                                       BindingResult bindingResult, RedirectAttributes redirectAttributes) {

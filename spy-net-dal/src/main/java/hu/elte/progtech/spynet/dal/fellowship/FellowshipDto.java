@@ -4,6 +4,9 @@ import hu.elte.progtech.spynet.dal.house.HouseDto;
 
 import java.time.LocalDate;
 
+/**
+ * Data transfer object between Data access layer and domain layer.
+ */
 public class FellowshipDto {
 
     private long fellowshipId;
@@ -14,6 +17,12 @@ public class FellowshipDto {
 
     public FellowshipDto() {}
 
+    /**
+     * Create a FellowshipDto from FellowshipEntity.
+     * @param fellowshipEntity If it is null it throws a NullPointerException.
+     * @param house1
+     * @param house2
+     */
     public FellowshipDto(FellowshipEntity fellowshipEntity, HouseDto house1, HouseDto house2) {
         this.fellowshipId = fellowshipEntity.getFellowshipId();
         this.house1 = house1;

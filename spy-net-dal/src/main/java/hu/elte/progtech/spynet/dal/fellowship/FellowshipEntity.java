@@ -6,6 +6,9 @@ import javax.persistence.*;
 import java.sql.Date;
 import java.time.LocalDate;
 
+/**
+ * The class represents the fellowships at the data access layer.
+ */
 @Entity
 @Table(name="fellowships")
 public class FellowshipEntity {

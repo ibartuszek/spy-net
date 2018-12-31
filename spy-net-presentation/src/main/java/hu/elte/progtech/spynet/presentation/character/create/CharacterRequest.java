@@ -4,6 +4,10 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+/**
+ * This class is a data transfer object to create or modify a Character.
+ * It is validated, by Spring, Hybernate on form.
+ */
 public class CharacterRequest {
 
     @NotNull

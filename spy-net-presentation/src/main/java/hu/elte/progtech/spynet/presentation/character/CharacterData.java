@@ -1,5 +1,8 @@
 package hu.elte.progtech.spynet.presentation.character;
 
+/**
+ * This class is a pojo class, which responsibility to show a Character by a controller.
+ */
 public class CharacterData {
 
     private long characterId;

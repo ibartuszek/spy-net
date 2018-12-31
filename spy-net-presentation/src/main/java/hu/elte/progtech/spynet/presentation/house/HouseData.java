@@ -1,5 +1,8 @@
 package hu.elte.progtech.spynet.presentation.house;
 
+/**
+ * This class is a pojo class, which responsibility to show a House by a controller.
+ */
 import java.util.Arrays;
 
 public class HouseData {

@@ -9,6 +9,10 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * It is a service class, which is responsible for the service methods of characters.
+ * It is the implementation of CharacterService interface.
+ */
 @Component("characterService")
 public class CharacterHandler implements CharacterService {
 

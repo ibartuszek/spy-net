@@ -13,6 +13,9 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+/**
+ * The class is a singleton class of which responsibility is to handle of the controller's requests.
+ */
 @Component
 public class ModifyFellowshipDataService {
 
@@ -28,6 +31,11 @@ public class ModifyFellowshipDataService {
     @Autowired
     private DateTimeFormatter dateTimeFormatter;
 
+    /**
+     * Create a fellowshipRequest object from the request parameter.
+     * @param modifyFellowshipRequest is the input object, which holds the id of the fellowship.
+     * @return a fellowshipRequest object which can be found in db or an empty object.
+     */
     public FellowshipRequest createFellowshipRequest(ModifyFellowshipRequest modifyFellowshipRequest) {
         FellowshipRequest fellowshipRequest = new FellowshipRequest();
         if (modifyFellowshipRequest.getFellowshipId() != 0) {
@@ -37,6 +45,12 @@ public class ModifyFellowshipDataService {
         return fellowshipRequest;
     }
 
+    /**
+     * It saves the fellowship. If it exists and is valid then service transformates it.
+     * The transformated object will send to the domain layer to update it.
+     * @param fellowshipRequest
+     * @return a boolean, which is true if it can send to domain the requests.
+     */
     public boolean saveFellowship(FellowshipRequest fellowshipRequest) {
         boolean modified = false;
         List<FellowshipData> fellowshipDataList = fellowshipDataService.getFellowshipDataList();

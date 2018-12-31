@@ -10,6 +10,9 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+/**
+ * The class is a singleton class of which responsibility is to handle of the controller's requests.
+ */
 @Component
 public class CreateHouseDataService {
 
@@ -22,6 +25,12 @@ public class CreateHouseDataService {
     @Autowired
     private HouseDataService houseDataService;
 
+    /**
+     * It saves the character. If It is valid and has transformated then it transfer the
+     * request to the domain layer.
+     * @param houseRequest cannot be null, if it is null it throws IllegalArgumentException.
+     * @return a boolean, which is true if it can send to domain the requests.
+     */
     public boolean saveHouse(HouseRequest houseRequest) {
         Preconditions.checkArgument(houseRequest != null, "houseRequest cannot be null!");
         boolean notFound = checkHouse(houseRequest);

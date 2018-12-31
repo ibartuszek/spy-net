@@ -5,7 +5,10 @@ import hu.elte.progtech.spynet.presentation.house.create.HouseRequest;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
-
+/**
+ * The class is a singleton class of which responsibility is to transform between:
+ * house to houseData, houseData to house or houseRequest to house.
+ */
 @Component
 public class HouseDataTransformer {
 

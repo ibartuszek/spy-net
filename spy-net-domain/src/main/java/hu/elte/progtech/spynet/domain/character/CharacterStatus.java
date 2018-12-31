@@ -1,5 +1,8 @@
 package hu.elte.progtech.spynet.domain.character;
 
+/**
+ * This enum class represents that the character lives or has died already.
+ */
 public enum CharacterStatus {
     DEAD("dead"), ALIVE("alive");
 

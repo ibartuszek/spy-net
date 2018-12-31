@@ -10,6 +10,9 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+/**
+ * The class is a singleton class of which responsibility is to handle of the controller's requests.
+ */
 @Component
 public class CreateCharacterDataService {
 
@@ -22,6 +25,12 @@ public class CreateCharacterDataService {
     @Autowired
     private CharacterDataService characterDataService;
 
+    /**
+     * It saves the character. If It is valid and the data has transformated then it transfer the
+     * request to the domain layer.
+     * @param characterRequest cannot be null, if it is null it throws IllegalArgumentException.
+     * @return a boolean, which is true if it can send to domain the requests.
+     */
     public boolean saveCharacter(CharacterRequest characterRequest) {
         Preconditions.checkArgument(characterRequest != null, "characterRequest cannot be null!");
         boolean notFound = checkCharacter(characterRequest);

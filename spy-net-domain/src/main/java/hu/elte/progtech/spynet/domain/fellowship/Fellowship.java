@@ -4,6 +4,9 @@ import hu.elte.progtech.spynet.domain.house.House;
 
 import java.time.LocalDate;
 
+/**
+ * Domain Pojo class.
+ */
 public class Fellowship {
 
     private long fellowshipId;

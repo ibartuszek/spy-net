@@ -10,6 +10,9 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+/**
+ * The class is a singleton class of which responsibility is to handle of the controller's requests.
+ */
 @Component
 public class CreateFellowshipDataService {
 
@@ -22,10 +25,22 @@ public class CreateFellowshipDataService {
     @Autowired
     private FellowshipDataService fellowshipDataService;
 
+    /**
+     * It checks the request data: house1 and house2 cannot be equal. If they are the same the method
+     * returns true.
+     * @param fellowshipRequest
+     * @return true if the both house is the same.
+     */
     public boolean checkRequestHouses(FellowshipRequest fellowshipRequest) {
         return fellowshipRequest.getHouse1().equals(fellowshipRequest.getHouse2());
     }
 
+    /**
+     * It saves the character. If It is valid and the data has transformated then it transfer the
+     * request to the domain layer.
+     * @param fellowshipRequest cannot be null, if it is null it throws IllegalArgumentException.
+     * @return a boolean, which is true if it can send to domain the requests.
+     */
     public boolean saveFellowship(FellowshipRequest fellowshipRequest) {
         Preconditions.checkArgument(fellowshipRequest != null, "fellowshipRequest cannot be null!");
         boolean notFound = checkFellowship(fellowshipRequest);
@@ -36,9 +51,6 @@ public class CreateFellowshipDataService {
     }
 
     private boolean checkFellowship(FellowshipRequest fellowshipRequest) {
-        /*if (fellowshipRequest.getHouse1().equals(fellowshipRequest.getHouse2())) {
-            return true;
-        }*/
         List<FellowshipData> fellowshipDataList = fellowshipDataService.getFellowshipDataList();
         boolean found = false;
         int index = 0;

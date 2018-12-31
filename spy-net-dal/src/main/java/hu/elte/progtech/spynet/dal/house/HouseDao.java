@@ -8,6 +8,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * The class is a singleton class of which responsibility is to make contact with the DB.
+ * It can save, list, modify houses from DataBase.
+ * It uses HouseRepository which is Crudrepository implemented by Spring.
+ */
 @Component
 public class HouseDao {
 

@@ -3,6 +3,9 @@ package hu.elte.progtech.spynet.dal.house;
 import javax.persistence.*;
 import java.util.Arrays;
 
+/**
+ * The class represents the houses at the data access layer.
+ */
 @Entity
 @Table(name="houses")
 public class HouseEntity {

@@ -2,6 +2,9 @@ package hu.elte.progtech.spynet.dal.house;
 
 import java.util.Arrays;
 
+/**
+ * Data transfer object between Data access layer and domain layer.
+ */
 public class HouseDto {
 
     private long houseId;
@@ -11,6 +14,10 @@ public class HouseDto {
 
     public HouseDto() {}
 
+    /**
+     * Create a houseDto from houseEntity.
+     * @param houseEntity If it is null it throws a NullPointerException.
+     */
     public HouseDto(HouseEntity houseEntity) {
         this.houseId = houseEntity.getHouseId();
         this.name = houseEntity.getName();

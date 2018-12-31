@@ -4,13 +4,15 @@ import hu.elte.progtech.spynet.dal.house.HouseEntity;
 
 import javax.persistence.*;
 
+/**
+ * The class represents the characters at the data access layer.
+ */
 @Entity
 @Table(name="characters")
 public class CharacterEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    // @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long characterId;
     @Column(length = 30, nullable = false, unique = true)
     private String name;

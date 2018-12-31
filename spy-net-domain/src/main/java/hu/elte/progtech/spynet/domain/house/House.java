@@ -2,6 +2,9 @@ package hu.elte.progtech.spynet.domain.house;
 
 import java.util.Arrays;
 
+/**
+ * Domain Pojo class.
+ */
 public class House {
 
     private long houseId;

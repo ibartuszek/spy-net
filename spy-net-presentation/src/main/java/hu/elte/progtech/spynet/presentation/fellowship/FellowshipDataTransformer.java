@@ -2,6 +2,7 @@ package hu.elte.progtech.spynet.presentation.fellowship;
 
 import hu.elte.progtech.spynet.domain.fellowship.Fellowship;
 import hu.elte.progtech.spynet.presentation.fellowship.create.FellowshipRequest;
+import hu.elte.progtech.spynet.presentation.fellowship.modify.ModifyFellowshipDataController;
 import hu.elte.progtech.spynet.presentation.house.HouseDataService;
 import hu.elte.progtech.spynet.presentation.house.HouseDataTransformer;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,10 @@ import org.springframework.stereotype.Component;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * The class is a singleton class of which responsibility is to transform between:
+ * fellowship to fellowshipData, fellowshipRequest to fellowship or fellowship to fellowshipRequest.
+ */
 @Component
 public class FellowshipDataTransformer {
 
@@ -77,6 +82,7 @@ public class FellowshipDataTransformer {
         return fellowshipRequest;
     }
 
+    // for Unit tests.
     public void setDateTimeFormatter(DateTimeFormatter dateTimeFormatter) {
         this.dateTimeFormatter = dateTimeFormatter;
     }

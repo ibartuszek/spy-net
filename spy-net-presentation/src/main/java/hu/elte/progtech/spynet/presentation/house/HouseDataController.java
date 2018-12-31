@@ -6,7 +6,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
-
+/**
+ * This class is a singleton and a controller. It makes contact between view: houses and Service.
+ */
 @Controller
 public class HouseDataController {
 
@@ -20,6 +22,10 @@ public class HouseDataController {
         return houseDataService.getHouseDataList();
     }
 
+    /**
+     * Gives back the main page.
+     * @return a view
+     */
     @RequestMapping(value = {REQUEST_MAPPING})
     public String houses() {
         return "houses";

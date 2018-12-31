@@ -12,6 +12,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.validation.Valid;
 import java.util.List;
 
+/**
+ * This class is a singleton and a controller. It makes contact between view: modifyFellowship and Service.
+ */
 @Controller
 public class ModifyFellowshipDataController {
 
@@ -33,11 +36,19 @@ public class ModifyFellowshipDataController {
         return modifyFellowshipDataService.createFellowshipRequest(modifyFellowshipRequest);
     }
 
+    /**
+     * Gives back the main page.
+     * @return a view
+     */
     @RequestMapping(REQUEST_MAPPING)
     public String modifyFellowship() {
         return "modifyFellowship";
     }
 
+    /**
+     * It transfer the form object to the service than redirect.
+     * @return a view of homepage.
+     */
     @RequestMapping("/postModifyFellowshipData.html")
     public String modifyFellowshipFromForm(@Valid @ModelAttribute("fellowshipRequest") FellowshipRequest fellowshipRequest,
                                       BindingResult bindingResult, RedirectAttributes redirectAttributes) {

@@ -9,6 +9,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 
+/**
+ * This class is a singleton and a controller. It makes contact between view: createHouse and Service.
+ */
 @Controller
 public class CreateHouseDataController {
 
@@ -18,15 +21,23 @@ public class CreateHouseDataController {
     private CreateHouseDataService createHouseDataService;
 
     @ModelAttribute
-    private HouseRequest houseRequest(HouseRequest houseRequest) {
+    public HouseRequest houseRequest(HouseRequest houseRequest) {
         return houseRequest;
     }
 
+    /**
+     * Gives back the main page.
+     * @return a view
+     */
     @RequestMapping(REQUEST_MAPPING)
     public String createHouse() {
         return "createHouse";
     }
 
+    /**
+     * It transfer the form object to the service than redirect.
+     * @return a view of homepage.
+     */
     @RequestMapping("/postCreateHouseData.html")
     public String createHouseFromForm(@Valid @ModelAttribute("houseRequest") HouseRequest houseRequest,
                                       BindingResult bindingResult, RedirectAttributes redirectAttributes) {

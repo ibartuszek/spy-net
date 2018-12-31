@@ -18,6 +18,9 @@ import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import java.util.Properties;
 
+/**
+ * This class is responsible for the Spring configuration of the database and the data access layer.
+ */
 @Configuration
 @EnableTransactionManagement
 @ComponentScan("hu.elte.progtech.spynet.dal.*")

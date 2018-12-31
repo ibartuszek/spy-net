@@ -5,6 +5,10 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+/**
+ * This class is a data transfer object to create or modify a House.
+ * It is validated, by Spring, Hybernate on form.
+ */
 public class HouseRequest {
 
     @NotNull

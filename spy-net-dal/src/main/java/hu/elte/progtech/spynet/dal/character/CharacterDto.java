@@ -3,6 +3,9 @@ package hu.elte.progtech.spynet.dal.character;
 import hu.elte.progtech.spynet.dal.house.HouseDto;
 import hu.elte.progtech.spynet.dal.house.HouseEntity;
 
+/**
+ * Data transfer object between Data access layer and domain layer.
+ */
 public class CharacterDto {
 
     private long characterId;
@@ -13,6 +16,10 @@ public class CharacterDto {
 
     public CharacterDto() {}
 
+    /**
+     * Create a characterDto from characterEntity.
+     * @param characterEntity If it is null it throws a NullPointerException.
+     */
     public CharacterDto(CharacterEntity characterEntity) {
         this.characterId = characterEntity.getCharacterId();
         this.name = characterEntity.getName();

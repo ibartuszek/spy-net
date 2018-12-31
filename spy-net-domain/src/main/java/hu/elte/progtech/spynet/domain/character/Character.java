@@ -2,6 +2,9 @@ package hu.elte.progtech.spynet.domain.character;
 
 import hu.elte.progtech.spynet.domain.house.House;
 
+/**
+ * Domain Pojo class.
+ */
 public class Character {
 
     private long characterId;

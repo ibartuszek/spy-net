@@ -3,6 +3,10 @@ package hu.elte.progtech.spynet.presentation.fellowship.create;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+/**
+ * This class is a data transfer object to create or modify a Fellowship.
+ * It is validated, by Spring, Hybernate on form.
+ */
 public class FellowshipRequest {
 
     @Size(min = 5, max = 20, message = "Name must be between 5 and 20 characters.")

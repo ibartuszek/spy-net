@@ -1,8 +1,6 @@
 package hu.elte.progtech.spynet.presentation.fellowship.create;
 
-import hu.elte.progtech.spynet.domain.fellowship.Fellowship;
 import hu.elte.progtech.spynet.presentation.house.HouseNameListService;
-import hu.elte.progtech.spynet.presentation.house.create.HouseRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -13,6 +11,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.validation.Valid;
 import java.util.List;
 
+/**
+ * This class is a singleton and a controller. It make contact between view: createFellowship and Service.
+ */
 @Controller
 public class CreateFellowshipDataController {
 
@@ -34,11 +35,19 @@ public class CreateFellowshipDataController {
         return fellowshipRequest;
     }
 
+    /**
+     * Gives back the main page.
+     * @return a view
+     */
     @RequestMapping(REQUEST_MAPPING)
     public String createFellowship() {
         return "createFellowship";
     }
 
+    /**
+     * It transfer the form object to the service than redirect.
+     * @return a view of homepage.
+     */
     @RequestMapping("/postCreateFellowshipData.html")
     public String createHouseFromForm(@Valid @ModelAttribute("fellowshipRequest") FellowshipRequest fellowshipRequest,
                                       BindingResult bindingResult, RedirectAttributes redirectAttributes) {

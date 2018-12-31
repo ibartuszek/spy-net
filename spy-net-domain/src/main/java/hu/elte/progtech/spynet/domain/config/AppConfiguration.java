@@ -9,13 +9,10 @@ import javax.annotation.PostConstruct;
 import java.util.TimeZone;
 
 /**
- * The aim of the configuration class is to initialize the common Objects
- * for the application: wagerDate and UserInterface.
+ * The aim of the configuration class is to initialize the singleton Objects.
  */
 @Configuration
 @Import({DataBaseConfiguration.class})
-// @PropertySource(value = {"classpath:/properties/wager.properties"}, encoding = "UTF-8")
-// @ComponentScan(basePackages = {"hu.elte.progtech.spynet.domain"})
 @ComponentScan("hu.elte.progtech.spynet.domain")
 public class AppConfiguration {
 

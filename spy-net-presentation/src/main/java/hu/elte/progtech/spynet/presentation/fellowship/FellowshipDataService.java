@@ -8,6 +8,9 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The class is a singleton class of which responsibility is to handle of the controller's requests.
+ */
 @Component
 public class FellowshipDataService {
 
@@ -17,7 +20,10 @@ public class FellowshipDataService {
     @Autowired
     private FellowshipDataTransformer fellowshipDataTransformer;
 
-
+    /**
+     * It asks for existing objects from domain layer. Transformates the elements a list and give it back.
+     * @return List<FellowshipData>
+     */
     public List<FellowshipData> getFellowshipDataList() {
         return transformToFellowshipDataList(fellowshipService.listFellowships());
     }

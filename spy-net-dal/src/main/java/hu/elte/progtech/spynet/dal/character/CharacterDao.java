@@ -14,6 +14,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+
+/**
+ * The class is a singleton class of which responsibility is to make contact with the DB.
+ * It can save, list, modify Characters from DataBase.
+ * It uses CharacterRepository, HouseRepository which are Crudrepositories implemented by Spring.
+ */
 @Component
 public class CharacterDao {
 
@@ -26,6 +32,11 @@ public class CharacterDao {
     @PersistenceContext
     private EntityManager entityManager;
 
+    /**
+     * It fethes characters from DB, transform to CharacterDto class and give back as an ArrayList.
+     * If there is not element in DB, the list will be an empty list.
+     * @return List<CharacterDto>
+     */
     public List<CharacterDto> listCharacters(){
         List<CharacterEntity> characterEntityList = (List<CharacterEntity>) characterRepository.findAll();
         return convertToCharacterDtoList(characterEntityList);
@@ -39,12 +50,21 @@ public class CharacterDao {
         return characterDtoList;
     }
 
+    /**
+     * It transforms the CharacterDto to CharacterEntity, than save it into DB.
+     * @param characterDto cannot be null! It throws IllegalArgument Exception.
+     */
     @Transactional
     public void saveCharacter(CharacterDto characterDto) {
         Preconditions.checkArgument(characterDto != null, "characterDto cannot be null!");
         characterRepository.save(new CharacterEntity(characterDto, getHouseEntity(characterDto)));
     }
 
+    /**
+     * It fetches the CharacterEntity from DB on the basis of the CharacterDto, than modify its parameter
+     * and save back to the DB.
+     * @param characterDto cannot be null! It throws IllegalArgument Exception.
+     */
     @Transactional
     public void updateCharacter(CharacterDto characterDto) {
         Preconditions.checkArgument(characterDto != null, "characterDto cannot be null!");
@@ -81,6 +101,11 @@ public class CharacterDao {
         characterRepository.save(characterEntity);
     }
 
+    /**
+     * It fetches a CharacterEntity and transform it to CharacterDto.
+     * @param characterId cannot be zero! It throws IllegalArgument Exception.
+     * @return CharacterDto, if it cannot be found it is null.
+     */
     public CharacterDto findById(long characterId) {
         Preconditions.checkArgument(characterId != 0, "characterId cannot be 0!");
         Optional<CharacterEntity> optionalCharacterEntity = characterRepository.findById(characterId);

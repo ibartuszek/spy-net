@@ -15,6 +15,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * The class is a singleton class of which responsibility is to make contact with the DB.
+ * It can save, list, modify fellowships from DataBase.
+ * It uses FellowshipRepository, HouseRepository which are Crudrepositories implemented by Spring.
+ */
 @Component
 public class FellowshipDao {
 
@@ -27,6 +32,11 @@ public class FellowshipDao {
     @PersistenceContext
     private EntityManager entityManager;
 
+    /**
+     * It fethes fellowships from DB, transform to FellowshipDto class and give back as an ArrayList.
+     * If there is not element in DB, the list will be an empty list.
+     * @return List<FellowshipDto>
+     */
     public List<FellowshipDto> listFellowships(){
         List<FellowshipEntity> fellowshipEntityList = (List<FellowshipEntity>) fellowshipRepository.findAll();
         return convertToFellowshipDtoList(fellowshipEntityList);
@@ -43,6 +53,10 @@ public class FellowshipDao {
         return fellowshipDtoList;
     }
 
+    /**
+     * It transforms the FellowshipDto to FellowshipEntity, than save it into DB.
+     * @param fellowshipDto cannot be null! It throws IllegalArgument Exception.
+     */
     @Transactional
     public void saveFellowship(FellowshipDto fellowshipDto) {
         checkFellowshipDto(fellowshipDto);
@@ -73,6 +87,11 @@ public class FellowshipDao {
         throw new IllegalArgumentException(msg);
     }
 
+    /**
+     * It fetches the FellowshipEntity from DB on the basis of the FellowshipDto, than modify its parameter
+     * and save back to the DB.
+     * @param fellowshipDto cannot be null! It throws IllegalArgument Exception.
+     */
     @Transactional
     public void updateFellowship(FellowshipDto fellowshipDto) {
         checkFellowshipDtoWithEnd(fellowshipDto);
@@ -107,6 +126,11 @@ public class FellowshipDao {
         fellowshipRepository.save(fellowshipEntity);
     }
 
+    /**
+     * It fetches a FellowshipEntity and transform it to FellowshipDto.
+     * @param fellowshipId cannot be zero! It throws IllegalArgument Exception.
+     * @return FellowshipDto, if it cannot be found it is null.
+     */
     public FellowshipDto findById(long fellowshipId) {
         Preconditions.checkArgument(fellowshipId != 0, "fellowshipId cannot be 0!");
         Optional<FellowshipEntity> optionalFellowshipEntity = fellowshipRepository.findById(fellowshipId);
